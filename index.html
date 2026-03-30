@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <!-- Mirrored from dedragames.com/games/ovo/1.4.4/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 05 Feb 2022 16:30:34 GMT -->
@@ -68,6 +68,23 @@
 		</canvas>
 		
 	</div>
+
+	<script>
+	const _NativeImage = window.Image;
+	window.Image = function(...args) {
+		const img = new _NativeImage(...args);
+		Object.defineProperty(img, 'src', {
+			set(url) {
+				img.crossOrigin = 'anonymous';
+				img.setAttribute('src', url);
+			},
+			get() {
+				return img.getAttribute('src');
+			}
+		});
+		return img;
+	};
+	</script>
 	
 	<!-- Pages load faster with scripts at the bottom -->
 	
